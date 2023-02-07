@@ -1,0 +1,29 @@
+@startuml rsp-activity
+start
+    :UserRegistration;
+    repeat
+        :input Andres;
+        :input true;
+        :input 1;
+    repeat while(AddNewUser) is (1)
+
+    :UserSelection;
+    repeat
+        :select U1;
+        :select U2;
+    repeat while(U1 == U2) is (isTrue)
+
+    :Game;
+    repeat
+        :select action#forUser#;
+    repeat while(round <= 3 || tie == true) is (isTrue)
+
+    :Menu;
+    repeat
+        :input 1;
+        :input 2;
+        :input 3;
+    repeat while (option != 3) is (yes)
+    stop
+
+@enduml

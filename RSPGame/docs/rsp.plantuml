@@ -1,0 +1,35 @@
+@startuml RockScissorPaper
+
+object Game
+    object RoundsCounter
+    object Player
+        object id
+        object name
+        object movement
+        object goals
+            object winningTimes
+            object lostTimes
+    object Human
+    object Computer
+    object actions
+        object rock
+        object scissor
+        object paper
+
+Game *-- Player
+Game *-- RoundsCounter
+
+Player *-- id
+Player *-- name
+Player o-- movement
+Human -right-|> Player
+Computer -left-|> Player
+actions <-up- Player
+goals -up-|> Player
+rock -up-|> actions
+scissor -up-|> actions
+paper -up-|> actions
+winningTimes -up-|> goals
+lostTimes -up-|> goals
+
+@enduml
