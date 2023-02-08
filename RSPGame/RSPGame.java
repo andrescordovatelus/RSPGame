@@ -50,7 +50,7 @@ public class RSPGame {
             System.out.print("Name: ");
             //name = sc.next();
             name = Console.getStringNext();
-            System.out.print("Is a human?: ");
+            System.out.print("Is a human? true/false: ");
             isHuman = Console.getBoolean();
             if (isHuman == false) {
                 Computer computer = new Computer(name, false);
@@ -59,9 +59,9 @@ public class RSPGame {
                 Human human = new Human(name, true);
                 players.add(human);
             }
-            System.out.print("Add another user? 0. No 1. Yes ");
+            System.out.print("Add another user? 0. No 1. Yes : ");
             option = Console.getInt();
-        } while (option == 1);
+        } while (option == 1 || players.size() < 2);
     }
 
     public void displayPlayers() {
