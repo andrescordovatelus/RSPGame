@@ -3,9 +3,6 @@ public abstract class Player {
     private int id;
     private String name;
     private boolean isHuman;
-    private int winningTimes = 0;
-    //private int tieTimes = 0;
-    private int lostTimes = 0;
 
     
     public Player(String name, boolean isHuman) {
@@ -17,12 +14,36 @@ public abstract class Player {
     
     @Override
     public String toString() {
-        return "Player [id=" + id + ", name=" + name + ", isHuman=" + isHuman + ", winningTimes=" + winningTimes
-                 + ", lostTimes=" + lostTimes + "]";
+        return "Player [id=" + id + ", name=" + name + ", isHuman=" + isHuman + "]";
+    }
+
+    public abstract int makeMovement();
+    public abstract boolean getIsHuman();
+
+
+    public int getId() {
+        return id;
     }
 
 
-    public abstract void makeMovement();
-    public abstract boolean getIsHuman();
+    public void setId(int id) {
+        this.id = id;
+    }
 
+
+    public String getName() {
+        return name;
+    }
+
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+
+    public void setHuman(boolean isHuman) {
+        this.isHuman = isHuman;
+    }
+
+    
 }
