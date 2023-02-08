@@ -2,25 +2,27 @@
     class RSPGame{
         -Player player1
         -Player player2
-        Round round
-        Score score
+        -Round round
         -ArrayList<Player>  players
 
-        +void RegisterPlayer()
+        +void ChoosePlayer()
+        +void setup()
         +void Execute()
-        +void DisplayPlayer()
+        +void Statistics()
+        +void RegisterPlayer()
+        +void DisplayPlayers()
+        +public Player searchPlayer(int id)
     }
 
     abstract class Player{
-        -Integer id
+        -int id
         -String name
         -Boolean isHuman
-        -static Integer count
+        -static int count
 
         +Player(String name, boolean isHuman)
-        +void play()
-        +void makeMovement()
         +abstract Boolean getIsHuman()
+        +abstract int makeMovement()
     }
 
     class Human{
@@ -34,45 +36,61 @@
     }
 
     class Score{
-        -Round round
-        -Integer winner
-        -String name
+        -ArrayList<ScoreItem> scores
+
+        +void addScore()
+        +void displayHistory()
+        +void displayWinner()
+    }
+
+    class ScoreItem{
+        -Player player
+        -int round
+        -int movement
+        -boolean winner
+
+        +ScoreItem(Player player, int round, int movement, boolean winner)
     }
 
     class Round{
-        -Player player1
-        -Player player2
-        -Integer movementPlayer1
-        -Integer movementPlayer2
-        -Integer totalRounds
-        -Integer roundsCounter
+        -Player playerOne
+        -Player playerTwo
+        -int movementPlayerOne
+        -int movementPlayerTwo
+        -final int totalRounds
+        -int roundCounter
+        -Shape shape
+        -Score score
 
-        +Round()
+        +Round(Player playerOne, Player playerTwo)
         +void executeRounds()
+        +void determinateRoundWinner()
+        +void determinateWinner()
     }
 
     abstract class Shape{
-        -shapes
+        #Enum SHAPES
+        -int movement
 
-        +abstract Integer winsWith()
+        +abstract int winsWith()
     }
 
     class Rock{
-        +Integer winsWith()
+        +int winsWith()
     }
 
     class Scissor{
-        +Integer winsWith()
+        +int winsWith()
     }
 
     class Paper{
-        +Integer winsWith()
+        +int winsWith()
     }
 
     RSPGame *-- Player
-    RSPGame *-- Score
-    RSPGame *-- Shape
     RSPGame *-- Round
+
+    Score --> ScoreItem
 
     Player <|-- Human
     Player <|-- Computer
@@ -82,6 +100,7 @@
 
     Player -right-> Shape
     Round -right-> Player
-    Score *-- Round
+    Round --> Score
+    Round --> Shape
 
 @enduml

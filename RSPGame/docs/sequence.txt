@@ -66,12 +66,5 @@
 ** User's two turn:
 --3
 ---------------------------------------------
-**User one has won the match
-**Menu
-**1. View Statitics.
-**2. Play again.
-**3. Exit game.
---1
-**Game' Statitics
-**ID = 1, Name = Andres, isHuman = true, winningTimes = 1, lostTimes = 0;
-**ID = 2, Name = roby, isHuman = false, , winningTimes = 0, lostTimes = 1;
+**Statistics
+**Player[id=1, name=Juan, isHuman=true]

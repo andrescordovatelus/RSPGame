@@ -2,10 +2,12 @@
 
 object RSPGame
     object Player
-        object id
-        object name
+            object id
+            object name
+            object isHuman
         object PlayerGoals
-            object play
+            object makeMovement
+            object win
             
     object Human
     object Computer
@@ -15,32 +17,46 @@ object RSPGame
         object scissor
         object paper
     object Score
-        object winningTimes
-        object lostTimes
+        object ScoreGoals
+            object displayHistory
+            object displayWinner
     object Rounds
+        object RoundGoals
+            object executeRound
+            object determineRoundWinner
+            object determineWinner
 
     RSPGame *-- Player
     RSPGame *-- Rounds
-    Rounds *-- Player
-    RSPGame *-- Shapes
-    RSPGame *-- Score
 
-    Player *-- id
-    Player *-- name
-    Player *-- PlayerGoals
-    Player -right-> Shapes
-
-    PlayerGoals --> play
+    Rounds *-- RoundGoals
+    RoundGoals --> executeRound
+    RoundGoals --> determineRoundWinner
+    RoundGoals --> determineWinner
 
     Human -down-|> Player
     Computer -down-|> Player
 
+    Rounds *-- Player
+    Rounds --> Shapes
+    
+    Score *-- ScoreGoals
+
+    Player *-- id
+    Player *-- name
+    Player *-- isHuman
+    Player *-- PlayerGoals
+    Player -right-> Shapes
+
+    makeMovement --|> PlayerGoals
+    win --|> PlayerGoals
+
+    displayHistory --|> ScoreGoals
+    displayWinner --|> ScoreGoals
+
     Shapes --> rock
     Shapes --> paper
     Shapes --> scissor
-
-    Score --> winningTimes
-    Score --> lostTimes
 
     Score -left-> Rounds
 @enduml

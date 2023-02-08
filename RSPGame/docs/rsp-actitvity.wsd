@@ -17,13 +17,7 @@ start
     repeat
         :select action#forUser#;
     repeat while(round <= 3 || tie == true) is (isTrue)
-
-    :Menu;
-    repeat
-        :input 1;
-        :input 2;
-        :input 3;
-    repeat while (option != 3) is (yes)
+    
     stop
 
 @enduml
