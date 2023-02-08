@@ -1,19 +1,31 @@
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.stream.Stream;
+
 public class Score {
-    private Round round;
-    private int winner;
-    private String name;
-    
-    public Score(Round round, int winner, String name) {
-        this.round = round;
-        this.winner = winner;
-        this.name = name;
+    private ArrayList<ScoreItem> scores = new ArrayList<>();
+
+    public void addScore(ScoreItem scoreItem) {
+        scores.add(scoreItem);
     }
 
-    @Override
-    public String toString() {
-        return "Score [round=" + round.getRoundsCounter() + ", winner=" + winner + ", name=" + name + "]";
+    public void displayHistory() {
+        System.out.println("\t========SCORES HISTORY========");
+        scores.forEach(scoreItem -> System.out.println(scoreItem.toString()));
     }
 
-    
-    
+    public void displayWinner(){
+        System.out.println("\t========WINNER========");
+        /*scores.stream()
+            .filter(scoreItem -> scoreItem.isWinner());*/
+            Player[] winnerPerRound = new Player[3];
+            int j = 0;
+            scores.forEach(scoreItem -> {
+                if(scoreItem.isWinner() == true){
+                    winnerPerRound[j] = scoreItem.getPlayer();
+                }
+            });
+        
+    }
+
 }

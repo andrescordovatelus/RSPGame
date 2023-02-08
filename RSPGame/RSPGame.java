@@ -1,3 +1,4 @@
+import java.sql.RowId;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -5,8 +6,6 @@ public class RSPGame {
     private Player player1;
     private Player player2;
     private Round round;
-    private Shape shape;
-    private Score score;
     private ArrayList<Player> players = new ArrayList<>();
 
     public void choosePlayer() {
@@ -30,28 +29,19 @@ public class RSPGame {
                 distinct = true;
             }
         } while (distinct == false);
+        round = new Round(player1, player2);//dentro de choose player
+    }
+
+    public void setup(){
+        registerPlayer();
     }
 
     public void execute() {
-        registerPlayer();
-        choosePlayer();
-        round = new Round(player1, player2);
-        int totalRounds = round.getTotalRounds();
-        int counter = round.getRoundsCounter();
-        ArrayList<Score> scoreHistory = new ArrayList<>();
-        do {
-            Round currentRound = new Round(player1, player2);
-            System.out.println("SELECT AN OPTION");
-            System.out.println("1) ROCK");
-            System.out.println("2) SCISSOR");
-            System.out.println("3) PAPER");
-            Player winner = currentRound.executeRounds();
-            score = new Score(currentRound, winner.getId(), winner.getName());
-            //counter++;
-            currentRound.setRoundsCounter(counter++);
-            scoreHistory.add(score);
-            scoreHistory.forEach(score -> System.out.println(score.toString()));
-        } while (counter <= totalRounds);
+        round.executeRounds();
+    }
+
+    public void statistics(){
+        round.determineWinner();
     }
 
     public void registerPlayer() {

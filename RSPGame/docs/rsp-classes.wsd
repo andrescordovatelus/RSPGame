@@ -1,6 +1,9 @@
 @startuml rsp-classes
     class RSPGame{
-        -Player player
+        -Player player1
+        -Player player2
+        Round round
+        Score score
         -ArrayList<Player>  players
 
         +void RegisterPlayer()
