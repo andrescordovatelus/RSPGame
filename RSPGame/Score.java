@@ -25,6 +25,10 @@ public class Score {
                     winnerPerRound[j] = scoreItem.getPlayer();
                 }
             });
+
+            for(int i = 0; i < winnerPerRound.length; i++){
+                System.out.println("name: " + winnerPerRound[i].getName());
+            }
         
     }
 
