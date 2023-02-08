@@ -21,10 +21,18 @@ public class Round {
             System.out.println("1) ROCK");
             System.out.println("2) SCISSOR");
             System.out.println("3) PAPER");
-            System.out.print("MOVEMENT FOR PLAYER 1: ");
-            movement1 = player1.makeMovement();
-            System.out.print("MOVEMENT FOR PLAYER 2: ");
-            movement2 = player2.makeMovement();
+            if(player1.getIsHuman() == true){
+                System.out.print("MOVEMENT FOR PLAYER 1: ");
+                movement1 = player1.makeMovement();
+            }else{
+                movement1 = player1.makeMovement();
+            }
+            if(player2.getIsHuman() == true){
+                System.out.print("MOVEMENT FOR PLAYER 2: ");
+                movement2 = player2.makeMovement();
+            }else{
+                movement2 = player2.makeMovement();
+            }
 
             determineRoundWinner();
         }

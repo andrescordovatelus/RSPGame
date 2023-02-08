@@ -8,7 +8,11 @@ public class Human extends Player {
     @Override
     public int makeMovement() {
         Scanner sc = new Scanner(System.in);
-        return sc.nextInt();
+        int movement = 0;
+        while(movement <= 0 || movement > 3){
+            movement = sc.nextInt();
+        }
+        return movement;
     }
 
     @Override
