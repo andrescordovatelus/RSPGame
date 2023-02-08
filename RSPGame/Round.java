@@ -4,6 +4,7 @@ public class Round {
     private int movement1;
     private int movement2;
     private final int totalRounds = 3;
+    private int roundCounter = 1;
     private Shape shape;
     private Score score;
 
@@ -14,9 +15,8 @@ public class Round {
     }
 
     public void executeRounds() {
-        int i = 1;
-        while (i <= totalRounds) {
-            System.out.println("\t========ROUND #" + i + "========");
+        while (roundCounter <= totalRounds) {
+            System.out.println("\t========ROUND #" + roundCounter + "========");
             System.out.println("SELECT AN OPTION");
             System.out.println("1) ROCK");
             System.out.println("2) SCISSOR");
@@ -26,31 +26,39 @@ public class Round {
             System.out.print("MOVEMENT FOR PLAYER 2: ");
             movement2 = player2.makeMovement();
 
-            switch (movement1) {
-                case 1:
-                    shape = new Rock();
-                    break;
-                case 2:
-                    shape = new Scissor();
-                    break;
-                case 3:
-                    shape = new Paper();
-                    break;
-            }
-
-            int winsWith = shape.winsWith() + 1;
-            if (winsWith == movement2) {
-                score.addScore(new ScoreItem(player1,i, movement1, true));
-                score.addScore(new ScoreItem(player2,i, movement2, false));
-            } else {
-                score.addScore(new ScoreItem(player1,i, movement1, false));
-                score.addScore(new ScoreItem(player2,i, movement2, true));
-            }
-            i++;
+            determineRoundWinner();
         }
     }
 
-    public void determineWinner(){
+    public void determineRoundWinner() {
+        switch (movement1) {
+            case 1:
+                shape = new Rock();
+                break;
+            case 2:
+                shape = new Scissor();
+                break;
+            case 3:
+                shape = new Paper();
+                break;
+        }
+
+        if (movement1 != movement2) {
+            int winsWith = shape.winsWith() + 1;
+            if (winsWith == movement2) {
+                score.addScore(new ScoreItem(player1, roundCounter, movement1, true));
+                score.addScore(new ScoreItem(player2, roundCounter, movement2, false));
+            } else {
+                score.addScore(new ScoreItem(player1, roundCounter, movement1, false));
+                score.addScore(new ScoreItem(player2, roundCounter, movement2, true));
+            }
+            roundCounter++;
+        } else {
+            System.out.println("IIE! PLAY AGAIN");
+        }
+    }
+
+    public void determineWinner() {
         score.displayHistory();
         score.displayWinner();
 
