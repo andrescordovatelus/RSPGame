@@ -16,19 +16,25 @@ public class Score {
 
     public void displayWinner(){
         System.out.println("\t========WINNER========");
-        /*scores.stream()
-            .filter(scoreItem -> scoreItem.isWinner());*/
             Player[] winnerPerRound = new Player[3];
             int j = 0;
-            scores.forEach(scoreItem -> {
-                if(scoreItem.isWinner() == true){
-                    winnerPerRound[j] = scoreItem.getPlayer();
+            for(int i = 0; i < scores.size(); i++){
+                if(scores.get(i).isWinner() == true){
+                    winnerPerRound[j] = scores.get(i).getPlayer();
+                    j++;
                 }
-            });
-
-            for(int i = 0; i < winnerPerRound.length; i++){
-                System.out.println("name: " + winnerPerRound[i].getName());
             }
+
+            Player winner = winnerPerRound[0];
+
+            for(int i = 1; i < winnerPerRound.length; i++){
+                if(winner.getId() == winnerPerRound[i].getId()){
+                    i++;
+                }else{
+                    winner = winnerPerRound[i];
+                }
+            }
+            System.out.println(winner.toString());
         
     }
 
