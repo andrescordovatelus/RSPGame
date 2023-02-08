@@ -1,7 +1,6 @@
 @startuml rsp-classes
     class RSPGame{
-        -Player player1
-        -Player player1
+        -Player player
         -ArrayList<Player>  players
 
         +void RegisterPlayer()
@@ -15,8 +14,71 @@
         -Boolean isHuman
         -static Integer count
 
-        +Player()
+        +Player(String name, boolean isHuman)
+        +void play()
         +void makeMovement()
         +abstract Boolean getIsHuman()
     }
+
+    class Human{
+        +Human(String name, boolean isHuman)
+        +Boolean getIsHuman()
+    }
+
+    class Computer{
+        +Computer(String name, boolean isHuman)
+        +Boolean getIsHuman()
+    }
+
+    class Score{
+        -Round round
+        -Integer winner
+        -String name
+    }
+
+    class Round{
+        -Player player1
+        -Player player2
+        -Integer movementPlayer1
+        -Integer movementPlayer2
+        -Integer totalRounds
+        -Integer roundsCounter
+
+        +Round()
+        +void executeRounds()
+    }
+
+    abstract class Shape{
+        -shapes
+
+        +abstract Integer winsWith()
+    }
+
+    class Rock{
+        +Integer winsWith()
+    }
+
+    class Scissor{
+        +Integer winsWith()
+    }
+
+    class Paper{
+        +Integer winsWith()
+    }
+
+    RSPGame *-- Player
+    RSPGame *-- Score
+    RSPGame *-- Shape
+    RSPGame *-- Round
+
+    Player <|-- Human
+    Player <|-- Computer
+    Shape <|-- Rock
+    Shape <|-- Scissor
+    Shape <|-- Paper
+
+    Player -right-> Shape
+    Round -right-> Player
+    Score *-- Round
+
 @enduml

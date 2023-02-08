@@ -21,6 +21,7 @@ object RSPGame
 
     RSPGame *-- Player
     RSPGame *-- Rounds
+    Rounds *-- Player
     RSPGame *-- Shapes
     RSPGame *-- Score
 
