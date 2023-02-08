@@ -1,0 +1,22 @@
+@startuml rsp-classes
+    class RSPGame{
+        -Player player1
+        -Player player1
+        -ArrayList<Player>  players
+
+        +void RegisterPlayer()
+        +void Execute()
+        +void DisplayPlayer()
+    }
+
+    abstract class Player{
+        -Integer id
+        -String name
+        -Boolean isHuman
+        -static Integer count
+
+        +Player()
+        +void makeMovement()
+        +abstract Boolean getIsHuman()
+    }
+@enduml

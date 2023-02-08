@@ -1,35 +1,45 @@
 @startuml RockScissorPaper
 
-object Game
-    object RoundsCounter
+object RSPGame
     object Player
         object id
         object name
-        object movement
-        object goals
-            object winningTimes
-            object lostTimes
+        object PlayerGoals
+            object play
+            
     object Human
     object Computer
-    object actions
+
+    object Shapes
         object rock
         object scissor
         object paper
+    object Score
+        object winningTimes
+        object lostTimes
+    object Rounds
 
-Game *-- Player
-Game *-- RoundsCounter
+    RSPGame *-- Player
+    RSPGame *-- Rounds
+    RSPGame *-- Shapes
+    RSPGame *-- Score
 
-Player *-- id
-Player *-- name
-Player o-- movement
-Human -right-|> Player
-Computer -left-|> Player
-actions <-up- Player
-goals -up-|> Player
-rock -up-|> actions
-scissor -up-|> actions
-paper -up-|> actions
-winningTimes -up-|> goals
-lostTimes -up-|> goals
+    Player *-- id
+    Player *-- name
+    Player *-- PlayerGoals
+    Player -right-> Shapes
 
+    PlayerGoals --> play
+
+    Human -down-|> Player
+    Computer -down-|> Player
+
+    Shapes --> rock
+    Shapes --> paper
+    Shapes --> scissor
+
+    Score --> winningTimes
+    Score --> lostTimes
+
+    Score -left-> Rounds
 @enduml
