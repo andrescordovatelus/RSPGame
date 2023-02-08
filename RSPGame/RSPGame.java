@@ -1,6 +1,4 @@
-import java.sql.RowId;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class RSPGame {
     private Player player1;
@@ -9,14 +7,13 @@ public class RSPGame {
     private ArrayList<Player> players = new ArrayList<>();
 
     public void choosePlayer() {
-        Scanner sc = new Scanner(System.in);
         int id = 0, count = 1;
         boolean distinct = true;
 
         do {
             displayPlayers();
             System.out.print("WRITE ID OF PLAYER #" + count + ": ");
-            id = sc.nextInt();
+            id = Console.getInt();
             if (count == 1) {
                 player1 = searchPlayer(id);
                 count++;
@@ -45,16 +42,16 @@ public class RSPGame {
     }
 
     public void registerPlayer() {
-        Scanner sc = new Scanner(System.in);
         String name;
         int option = 1;
         boolean isHuman;
         do {
             System.out.println("\tADD NEW USER");
             System.out.print("Name: ");
-            name = sc.next();
+            //name = sc.next();
+            name = Console.getStringNext();
             System.out.print("Is a human?: ");
-            isHuman = sc.nextBoolean();
+            isHuman = Console.getBoolean();
             if (isHuman == false) {
                 Computer computer = new Computer(name, false);
                 players.add(computer);
@@ -63,7 +60,7 @@ public class RSPGame {
                 players.add(human);
             }
             System.out.print("Add another user? 0. No 1. Yes ");
-            option = sc.nextInt();
+            option = Console.getInt();
         } while (option == 1);
     }
 
