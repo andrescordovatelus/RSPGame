@@ -29,7 +29,7 @@ public class RSPGame {
         round = new Round(player1, player2);
     }
 
-    public void setup(){
+    public void setup() {
         registerPlayer();
     }
 
@@ -37,7 +37,7 @@ public class RSPGame {
         round.executeRounds();
     }
 
-    public void statistics(){
+    public void statistics() {
         round.determineWinner();
     }
 
@@ -48,7 +48,6 @@ public class RSPGame {
         do {
             System.out.println("\tADD NEW USER");
             System.out.print("Name: ");
-            //name = sc.next();
             name = Console.getStringNext();
             System.out.print("Is a human? true/false: ");
             isHuman = Console.getBoolean();
