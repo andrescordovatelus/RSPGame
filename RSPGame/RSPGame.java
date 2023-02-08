@@ -29,7 +29,7 @@ public class RSPGame {
                 distinct = true;
             }
         } while (distinct == false);
-        round = new Round(player1, player2);//dentro de choose player
+        round = new Round(player1, player2);
     }
 
     public void setup(){
