@@ -1,16 +1,16 @@
 public class Round {
-    private Player player1;
-    private Player player2;
-    private int movement1;
-    private int movement2;
+    private Player playerOne;
+    private Player playerTwo;
+    private int movementPlayerOne;
+    private int movementPlayerTwo;
     private final int totalRounds = 3;
     private int roundCounter = 1;
     private Shape shape;
     private Score score;
 
-    public Round(Player player1, Player player2) {
-        this.player1 = player1;
-        this.player2 = player2;
+    public Round(Player playerOne, Player playerTwo) {
+        this.playerOne = playerOne;
+        this.playerTwo = playerTwo;
         score = new Score();
     }
 
@@ -21,17 +21,17 @@ public class Round {
             System.out.println("1) ROCK");
             System.out.println("2) SCISSOR");
             System.out.println("3) PAPER");
-            if(player1.getIsHuman() == true){
+            if(playerOne.getIsHuman() == true){
                 System.out.print("MOVEMENT FOR PLAYER 1: ");
-                movement1 = player1.makeMovement();
+                movementPlayerOne = playerOne.makeMovement();
             }else{
-                movement1 = player1.makeMovement();
+                movementPlayerOne = playerOne.makeMovement();
             }
-            if(player2.getIsHuman() == true){
+            if(playerTwo.getIsHuman() == true){
                 System.out.print("MOVEMENT FOR PLAYER 2: ");
-                movement2 = player2.makeMovement();
+                movementPlayerTwo = playerTwo.makeMovement();
             }else{
-                movement2 = player2.makeMovement();
+                movementPlayerTwo = playerTwo.makeMovement();
             }
 
             determineRoundWinner();
@@ -39,7 +39,7 @@ public class Round {
     }
 
     public void determineRoundWinner() {
-        switch (movement1) {
+        switch (movementPlayerOne) {
             case 1:
                 shape = new Rock();
                 break;
@@ -51,14 +51,14 @@ public class Round {
                 break;
         }
 
-        if (movement1 != movement2) {
+        if (movementPlayerOne != movementPlayerTwo) {
             int winsWith = shape.winsWith() + 1;
-            if (winsWith == movement2) {
-                score.addScore(new ScoreItem(player1, roundCounter, movement1, true));
-                score.addScore(new ScoreItem(player2, roundCounter, movement2, false));
+            if (winsWith == movementPlayerTwo) {
+                score.addScore(new ScoreItem(playerOne, roundCounter, movementPlayerOne, true));
+                score.addScore(new ScoreItem(playerTwo, roundCounter, movementPlayerTwo, false));
             } else {
-                score.addScore(new ScoreItem(player1, roundCounter, movement1, false));
-                score.addScore(new ScoreItem(player2, roundCounter, movement2, true));
+                score.addScore(new ScoreItem(playerOne, roundCounter, movementPlayerOne, false));
+                score.addScore(new ScoreItem(playerTwo, roundCounter, movementPlayerTwo, true));
             }
             roundCounter++;
         } else {
